@@ -10,6 +10,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { register } from "@/lib/action"
 
 export function SignupForm({
   className,
@@ -17,7 +18,7 @@ export function SignupForm({
 }) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form>
+      <form action={register}>
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
             <a href="#" className="flex flex-col items-center gap-2 font-medium">
@@ -33,15 +34,15 @@ export function SignupForm({
           </div>
           <Field>
             <FieldLabel htmlFor="username">Username</FieldLabel>
-            <Input id="username" type="text" placeholder="Firmansyah Prakoso" className='bg-[#393E46]' required />
+            <Input id="username" type="text" placeholder="Firmansyah Prakoso" name='username' className='bg-[#393E46]' required />
           </Field>
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input id="email" type="email" placeholder="m@example.com" required className='bg-[#393E46]' />
+            <Input id="email" type="email" placeholder="m@example.com" required name='email' className='bg-[#393E46]' />
           </Field>
           <Field>
             <FieldLabel htmlFor="email">Password</FieldLabel>
-            <Input id="password" type="password" placeholder="Enter your password here..." required className='bg-[#393E46]' />
+            <Input id="password" type="password" placeholder="Enter your password here..." name='password' required className='bg-[#393E46]' />
           </Field>
           <Field>
             <Button type="submit" className='bg-[#3660CA] hover:bg-[#393E46]'>Create Account</Button>
