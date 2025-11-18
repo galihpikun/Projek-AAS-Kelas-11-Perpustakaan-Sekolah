@@ -21,11 +21,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getAllUsers } from "@/lib/action";
-import { DialogAddUser } from "@/components/DialogAddUser";
+import { fetchBooks } from "@/lib/action";
+import { DialogAddBook } from "@/components/DialogAddBook";
+
 
 export default async function users() {
-  const { users, totalUsers } = await getAllUsers();
+  const { books, totalBooks } = await fetchBooks();
 
   return (
     <SidebarProvider>
@@ -42,50 +43,50 @@ export default async function users() {
             <BreadcrumbList>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Users</BreadcrumbPage>
+                <BreadcrumbPage>Books</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
          </div>
-          <DialogAddUser></DialogAddUser>
+         <DialogAddBook></DialogAddBook>
         </header>
         <div className="flex flex-col items-center justify-center gap-4 p-4">
-          <h1>
-            Total users yang terdaftar <strong>{totalUsers}</strong>
+         <h1>
+            Total Buku yang terdaftar <strong>{totalBooks}</strong>
           </h1>
           <div className="p-5 shadow-2xl rounded-xl w-full">
             <Table>
               <TableCaption>
-                List akun yang terdafatar di <strong>Perpus.</strong>
+                List Buku yang terdafatar di <strong>Perpus.</strong>
               </TableCaption>
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[100px] text-center">
-                    ID Akun
+                    ID Buku
                   </TableHead>
-                  <TableHead className="text-center">Username</TableHead>
-                  <TableHead className="text-center">Email</TableHead>
-                  <TableHead className="text-center">Role</TableHead>
+                  <TableHead className="text-center">Nama Buku</TableHead>
+                  <TableHead className="text-center">Genre</TableHead>
+                  <TableHead className="text-center">Author</TableHead>
+                  <TableHead className="text-center">Status</TableHead>
+                  <TableHead className="text-center">Gambar</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.user_id}>
+                {books.map((book) => (
+                  <TableRow key={book.id_buku}>
                     <TableCell className="font-medium text-center">
-                      {user.user_id}
+                      {book.id_buku}
                     </TableCell>
                     <TableCell className="text-center">
-                      {user.username}
+                      {book.nama_buku}
                     </TableCell>
-                    <TableCell className="text-center">{user.email}</TableCell>
-                    <TableCell
-                      className={`text-center w-fit h-fit font-bold ${
-                        user.role === "petugas"
-                          ? "text-red-700"
-                          : "text-blue-700"
-                      }`}>
-                      {user.role}
+                    <TableCell className="text-center">
+                      {book.genre_buku}
                     </TableCell>
+                    <TableCell className="text-center">{book.author}</TableCell>
+                    <TableCell className="text-center">{book.status}</TableCell>
+                    
+                    
                   </TableRow>
                 ))}
               </TableBody>
