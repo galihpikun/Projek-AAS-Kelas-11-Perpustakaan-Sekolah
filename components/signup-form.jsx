@@ -1,7 +1,6 @@
-import { GalleryVerticalEnd } from "lucide-react"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   Field,
   FieldDescription,
@@ -10,48 +9,84 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 import { register } from "@/lib/action"
 
-export function SignupForm({
-  className,
-  ...props
-}) {
+
+export function SignupForm({ className, ...props }) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form action={register}>
-        <FieldGroup>
-          <div className="flex flex-col items-center gap-2 text-center">
-            <a href="#" className="flex flex-col items-center gap-2 font-medium">
-              <div className="flex size-8 items-center justify-center rounded-md">
-                <GalleryVerticalEnd className="size-6" />
+      <Card className="overflow-hidden p-0">
+        <CardContent className="grid p-0 md:grid-cols-2">
+          <form className="p-6 md:p-8" action={register}>
+            <FieldGroup>
+              <div className="flex flex-col items-center gap-2 text-center">
+                <h1 className="text-2xl font-bold">Create your account</h1>
+                <p className="text-muted-foreground text-sm text-balance">
+                  Enter your details to create your account
+                </p>
               </div>
-              <span className="sr-only">Perpus.</span>
-            </a>
-            <h1 className="text-xl font-bold">Welcome to Perpus.</h1>
-            <FieldDescription>
-              Already have an account? <Link href='/login'>Sign in</Link>
-            </FieldDescription>
+
+              <Field>
+                <FieldLabel htmlFor="username">Username</FieldLabel>
+                <Input
+                  id="username"
+                  name="username"
+                  placeholder="Firmansyah Prakoso"
+                  type="text"
+                  required
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password here..."
+                  required
+                />
+              </Field>
+
+              <Field>
+                <Button type="submit">Create Account</Button>
+              </Field>
+
+              
+
+              <FieldDescription className="text-center">
+                Already have an account?{" "}
+                <Link href="/login">Sign in</Link>
+              </FieldDescription>
+            </FieldGroup>
+          </form>
+
+          <div className="bg-muted relative hidden md:block">
+            <img
+              src="/placeholder.svg"
+              alt="Image"
+              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+            />
           </div>
-          <Field>
-            <FieldLabel htmlFor="username">Username</FieldLabel>
-            <Input id="username" type="text" placeholder="Firmansyah Prakoso" name='username' required />
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input id="email" type="email" placeholder="m@example.com" required name='email'  />
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="email">Password</FieldLabel>
-            <Input id="password" type="password" placeholder="Enter your password here..." name='password' required  />
-          </Field>
-          <Field>
-            <Button type="submit" className='bg-[#3660CA]'>Create Account</Button>
-          </Field>
-        </FieldGroup>
-      </form>
+        </CardContent>
+      </Card>
+
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our{" "}
+        <a href="#">Terms of Service</a> and{" "}
+        <a href="#">Privacy Policy</a>.
       </FieldDescription>
     </div>
   );
