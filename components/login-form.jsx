@@ -52,7 +52,7 @@ export function LoginForm({ className, ...props }) {
               <span className="sr-only">Perpus.</span>
             </a>
             <h1 className="text-xl font-bold">Welcome to Perpus.</h1>
-            <FieldDescription className="text-white font-light hover:text-gray-100">
+            <FieldDescription>
               Don&apos;t have an account? <Link href="/signup">Sign Up</Link>
             </FieldDescription>
           </div>
@@ -64,7 +64,7 @@ export function LoginForm({ className, ...props }) {
               placeholder="m@example.com"
               name="email"
               required
-              className="bg-[#393E46]"
+
             />
           </Field>
           <Field>
@@ -75,17 +75,16 @@ export function LoginForm({ className, ...props }) {
               placeholder="Enter your password here..."
               name="password"
               required
-              className="bg-[#393E46]"
             />
           </Field>
           <Field>
-            <Button type="submit" className="bg-[#3660CA] hover:bg-[#393E46]">
+            <Button type="submit" className="bg-[#3660CA]">
               Login
             </Button>
           </Field>
         </FieldGroup>
       </form>
-      <FieldDescription className="px-6 text-center text-white font-light hover:text-gray-100">
+      <FieldDescription className="px-6 text-center">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
       </FieldDescription>

@@ -13,38 +13,48 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addBook } from "@/lib/action";
+import { editBook } from "@/lib/action";
 import { useState } from "react";
 
-export function DialogAddBook() {
-  const [preview, setPreview] = useState(null);
+export function DialogEditBook({ book }) {
+  const [preview, setPreview] = useState(book.gambar || null);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add A Book</Button>
+        <Button variant="outline">Edit</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add a Book</DialogTitle>
+          <DialogTitle>Edit Book</DialogTitle>
           <DialogDescription>
-            Tambahkan buku baru ke sistem perpustakaan.
+            Edit data buku di sistem perpustakaan.
           </DialogDescription>
         </DialogHeader>
 
-        {/* FORM */}
-        <form
-          action={addBook}
-          className="grid gap-4"
-        >
+        <form action={editBook} className="grid gap-4">
+          {/* ID BUKU (HIDDEN) */}
+          <input
+            type="hidden"
+            name="id_buku"
+            value={book.id_buku}
+          />
+
+          {/* CURRENT IMAGE (HIDDEN) */}
+          <input
+            type="hidden"
+            name="currentImage"
+            value={book.gambar}
+          />
+
           {/* NAMA BUKU */}
           <div className="grid gap-2">
             <Label htmlFor="nama_buku">Nama Buku</Label>
             <Input
               id="nama_buku"
               name="nama_buku"
-              placeholder="Masukkan nama buku..."
+              defaultValue={book.nama_buku}
               required
             />
           </div>
@@ -55,6 +65,7 @@ export function DialogAddBook() {
             <select
               id="genre"
               name="genre"
+              defaultValue={book.genre_buku}
               className="border p-2 rounded-md"
               required
             >
@@ -77,7 +88,7 @@ export function DialogAddBook() {
             <Input
               id="author"
               name="author"
-              placeholder="Masukkan nama author..."
+              defaultValue={book.author}
               required
             />
           </div>
@@ -90,7 +101,6 @@ export function DialogAddBook() {
               name="image"
               type="file"
               accept="image/*"
-              required
               onChange={(e) => {
                 const file = e.target.files[0];
                 if (file) {
@@ -109,17 +119,12 @@ export function DialogAddBook() {
             />
           )}
 
-          {/* HIDDEN: currentImage (wajib biar backend ga error) */}
-          <input type="hidden" name="currentImage" value="" />
-
-          {/* FOOTER */}
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            
             <DialogClose asChild>
-            <Button type="submit">Add Book</Button>
+            <Button type="submit">Save Changes</Button>
             </DialogClose>
           </DialogFooter>
         </form>

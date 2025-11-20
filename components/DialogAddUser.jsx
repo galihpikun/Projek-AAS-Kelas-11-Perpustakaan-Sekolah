@@ -79,7 +79,9 @@ export function DialogAddUser() {
         <DialogClose asChild>
           <Button variant="outline" className="mr-2">Cancel</Button>
         </DialogClose>
+        <DialogClose asChild>
         <Button type="submit">Add User</Button>
+        </DialogClose>
       </DialogFooter>
 
     </form>

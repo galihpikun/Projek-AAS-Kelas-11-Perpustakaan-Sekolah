@@ -28,28 +28,28 @@ export function SignupForm({
               <span className="sr-only">Perpus.</span>
             </a>
             <h1 className="text-xl font-bold">Welcome to Perpus.</h1>
-            <FieldDescription className='text-white font-light hover:text-gray-100'>
+            <FieldDescription>
               Already have an account? <Link href='/login'>Sign in</Link>
             </FieldDescription>
           </div>
           <Field>
             <FieldLabel htmlFor="username">Username</FieldLabel>
-            <Input id="username" type="text" placeholder="Firmansyah Prakoso" name='username' className='bg-[#393E46]' required />
+            <Input id="username" type="text" placeholder="Firmansyah Prakoso" name='username' required />
           </Field>
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input id="email" type="email" placeholder="m@example.com" required name='email' className='bg-[#393E46]' />
+            <Input id="email" type="email" placeholder="m@example.com" required name='email'  />
           </Field>
           <Field>
             <FieldLabel htmlFor="email">Password</FieldLabel>
-            <Input id="password" type="password" placeholder="Enter your password here..." name='password' required className='bg-[#393E46]' />
+            <Input id="password" type="password" placeholder="Enter your password here..." name='password' required  />
           </Field>
           <Field>
-            <Button type="submit" className='bg-[#3660CA] hover:bg-[#393E46]'>Create Account</Button>
+            <Button type="submit" className='bg-[#3660CA]'>Create Account</Button>
           </Field>
         </FieldGroup>
       </form>
-      <FieldDescription className="px-6 text-center text-white font-light">
+      <FieldDescription className="px-6 text-center">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
       </FieldDescription>
