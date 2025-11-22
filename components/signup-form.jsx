@@ -61,7 +61,7 @@ export function SignupForm({ className, ...props }) {
               </Field>
 
               <Field>
-                <Button type="submit">Create Account</Button>
+                <Button type="submit" className='bg-primary2'>Create Account</Button>
               </Field>
 
               
@@ -75,7 +75,7 @@ export function SignupForm({ className, ...props }) {
 
           <div className="bg-muted relative hidden md:block">
             <img
-              src="/placeholder.svg"
+              src="/images/herosection.jpeg"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
             />

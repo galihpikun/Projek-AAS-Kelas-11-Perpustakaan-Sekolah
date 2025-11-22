@@ -1,4 +1,18 @@
-import * as React from "react"
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSidebar } from "@/components/ui/sidebar";
+
+import {
+  LayoutDashboard,
+  BookOpen,
+  Users,
+  ClipboardCheck,
+  UserCircle,
+  LogOut,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -10,50 +24,76 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
-const data = {
-  navMain: [
-    {
-      title: "Menu",
-      items: [
-        { title: "Dashboard", url: "/admin/dashboard" },
-        { title: "Books", url: "/admin/books" },
-        { title: "Users", url: "/admin/users" },
-        { title: "Borrows", url: "/borrows" },
-      ],
-    },
-  ],
-}
+const sidebarItems = [
+  { title: "Dashboard", url: "/admin/dashboard", icon: LayoutDashboard },
+  { title: "Books", url: "/admin/books", icon: BookOpen },
+  { title: "Users", url: "/admin/users", icon: Users },
+  { title: "Borrows", url: "/admin/borrows", icon: ClipboardCheck },
+];
 
-export function AppSidebar({
-  ...props
-}) {
+export function AppSidebar(props) {
+  const pathname = usePathname();
+  const { state } = useSidebar(); 
+
   return (
-    <Sidebar {...props}>
-      <SidebarHeader className='justify-center flex items-center'>
-        <h1 className="text-2xl font-semibold">Perpus.</h1>
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader className="flex items-center justify-center">
+        <div className="flex items-center gap-2 transition-all duration-300">
+       
+          <span className="text-2xl">📚</span>
+
+   
+          {state !== "collapsed" && (
+            <span className="text-xl font-semibold transition-all duration-300">
+              Perpus.
+            </span>
+          )}
+        </div>
       </SidebarHeader>
+
       <SidebarContent>
-        {/* We create a SidebarGroup for each parent. */}
-        {data.navMain.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
+        <SidebarGroup>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {sidebarItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url}>
+                    <Link href={item.url} className="flex items-center gap-2">
+                      <item.icon className="w-4 h-4" />
+                      {state !== "collapsed" && <span>{item.title}</span>}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
+
+      
+      <SidebarFooter>
+        <div className="flex items-center gap-3 p-3 rounded-md hover:bg-muted cursor-pointer">
+          <UserCircle className="w-6 h-6" />
+          {state !== "collapsed" && <span className="truncate">Admin</span>}
+        </div>
+
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <button className="flex items-center gap-2 w-full text-red-500">
+                <LogOut className="w-4 h-4" />
+                {state !== "collapsed" && "Logout"}
+              </button>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );

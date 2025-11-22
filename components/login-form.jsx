@@ -69,7 +69,7 @@ export function LoginForm({
                 <Input id="password" type="password" name='password' required />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit" className='bg-secondary2 hover:bg-accent2'>Login</Button>
               </Field>
              
               <FieldDescription className="text-center">
@@ -79,13 +79,13 @@ export function LoginForm({
           </form>
           <div className="bg-muted relative hidden md:block">
             <img
-              src="/placeholder.svg"
+              src="/images/herosection.jpeg"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
           </div>
         </CardContent>
       </Card>
-      <FieldDescription className="px-6 text-center">
+      <FieldDescription className="px-6 text-center text-black opacity-80">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
       </FieldDescription>
