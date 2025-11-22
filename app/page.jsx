@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <main className="flex flex-col gap-25 scroll-smooth">
       <nav className="flex justify-around items-center h-18 bg-[#C89F68] text-white w-full fixed z-10 shadow-2xl">
-        <h1 className="text-xl font-semibold">Perpus.</h1>
+        <h1 className="text-xl font-semibold">📚 Perpus.</h1>
         <ol className="flex gap-5">
           <li>
             <a href="#home">Home</a>
@@ -120,65 +121,50 @@ export default function Home() {
         />
       </section>
 
-      <section
-        className="flex flex-col items-center gap-10 px-20"
-        id="features">
+
+      <section className="flex flex-col items-center gap-5 p-20 pb-25 bg-primary2 text-black justify-center text-center" id="features">
         <h1 className="text-xl font-semibold rounded-full bg-[#C89F68] w-fit px-5 py-2 text-white">
           Our Features
         </h1>
         <div className="flex items-center justify-center gap-10">
-          <div className="w-[400px] h-auto rounded-2xl flex flex-col gap-2 hover:scale-105 transition-transform duration-300 shadow-xl">
+          <div className="w-[400px] h-auto rounded-2xl flex flex-col gap-2 hover:scale-105 transition-transform duration-300 shadow-xl bg-white">
             <img
               src="/images/admin.jpg"
               alt=""
               className="rounded-t-2xl h-[250px] object-cover"
             />
-            <div className="px-5 pb-5 gap-3">
+            <div className="px-5 pb-5 gap-2 flex flex-col">
               <h2 className="text-xl font-medium">Admin Mengelola Buku</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p className="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque illo reiciendis iure quod tempora non!</p>
             </div>
           </div>
 
-          <div className="w-[400px] h-auto rounded-2xl flex flex-col gap-2 hover:scale-105 transition-transform duration-300 shadow-xl">
+          <div className="w-[400px] h-auto rounded-2xl flex flex-col gap-2 hover:scale-105 transition-transform duration-300 shadow-xl bg-white">
             <img
               src="/images/bukuberlimpah.jpg"
               alt=""
               className="rounded-t-2xl h-[250px] object-cover"
             />
-            <div className="px-5 pb-5 gap-3">
+            <div className="px-5 pb-5 gap-2 flex flex-col">
               <h2 className="text-xl font-medium">Bukunya Banyak Jrit</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, dolores laboriosam? Quibusdam magnam iure facilis.</p>
+                          </div>
           </div>
 
-          <div className="w-[400px] h-auto rounded-2xl flex flex-col gap-2 hover:scale-105 transition-transform duration-300 shadow-xl">
+          <div className="w-[400px] h-auto rounded-2xl flex flex-col gap-2 hover:scale-105 transition-transform duration-300 shadow-xl bg-white">
             <img
               src="/images/database.jpeg"
               alt=""
               className="rounded-t-2xl h-[250px] object-cover"
             />
-            <div className="px-5 pb-5 gap-3">
+            <div className="px-5 pb-5 gap-2 flex flex-col">
               <h2 className="text-xl font-medium">
                 Memakai sistem database canggih
               </h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestias sapiente quo maiores rerum sequi.</p>
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="flex flex-col items-center gap-5 p-20 bg-primary2 text-white h-[400px] justify-center text-center">
-        <h1 className="text-3xl font-semibold">Pengen make perpus kami?</h1>
-        <p className="text-lg px-50">
-          Lansung aja daftar jrit,Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Voluptatum illum libero quisquam ad distinctio!
-          Accusamus nostrum rem itaque suscipit excepturi!
-        </p>
-        <Link
-          href="signup"
-          className="bg-secondary2 px-6 py-2 rounded-lg font-medium hover:bg-accent2 transition-all duration-300">
-          Register
-        </Link>
       </section>
 
       <section className="flex flex-col gap-10">
@@ -224,62 +210,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="w-full bg-[#C89F68] text-white">
-        <div className="flex justify-around items-start gap-10 p-10">
-          <div>
-            <h2 className="text-2xl font-bold flex items-center gap-2 select-none">
-              📚 Perpus.
-            </h2>
-            <p className="text-sm mt-2 opacity-80">
-              Platform perpustakaan digital untuk memudahkan siswa mengakses dan
-              meminjam buku kapan saja. <br />
-              Lorem ipsum dolor sit amet, consectetur <br />
-              adipisicing elit. Minus neque sapiente totam dolores consequatur{" "}
-              <br />
-              alias commodi magni quasi impedit? Laboriosam.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-3">Navigasi</h3>
-            <ul className="space-y-2 text-sm opacity-90">
-              <li>
-                <a href="#home" className="hover:text-black transition">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-black transition">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#features" className="hover:text-black transition">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="/books" className="hover:text-black transition">
-                  Books
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-3">Kontak</h3>
-            <ul className="space-y-2 text-sm opacity-90">
-              <li>Email: admin@perpus.com</li>
-              <li>Telp: 0882-xxxx-xxxx</li>
-              <li>Lokasi: Bekasi, Jawa Barat</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-white/30 py-4 text-center text-sm opacity-80">
-          © 2024 Perpustakaan Firman. All rights reserved.
-        </div>
-      </footer>
+      <Footer></Footer>     
     </main>
   );
 }
