@@ -13,74 +13,61 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addUser } from "@/lib/action";
+import { editProfileAdmin, editUser } from "@/lib/action";
 import { useState } from "react";
 
-export function DialogAddUser() {
-  const [preview, setPreview] = useState(null);
+export function DialogEditUser({ user }) {
+  const [preview, setPreview] = useState(user.avatar || null);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className='bg-secondary2 text-white hover:bg-accent2 hover:text-white'>Add A User</Button>
+        <Button variant="outline">Edit</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add a user</DialogTitle>
+          <DialogTitle>Edit User</DialogTitle>
           <DialogDescription>
-            Tambahkan user baru ke sistem perpustakaan.
+            Edit data user di sistem perpustakaan.
           </DialogDescription>
         </DialogHeader>
 
-        <form action={addUser} className="grid gap-4">
+        <form action={editProfileAdmin} className="grid gap-4">
+          <input type="hidden" name="user_id" value={user.user_id} />
 
-      
+          <input type="hidden" name="currentImage" value={user.avatar || ""} />
+
           <div className="grid gap-2">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="nama_buku">Nama User</Label>
             <Input
               id="username"
               name="username"
-              placeholder="Masukkan username"
+              defaultValue={user.username}
               required
             />
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Masukkan email"
-              required
-            />
+            <Label htmlFor="genre">Email</Label>
+            <Input id="email" name="email" defaultValue={user.email} required />
           </div>
 
+          
           <div className="grid gap-2">
-            <Label htmlFor="role">Role</Label>
+            <Label htmlFor="author">Role</Label>
             <select
               id="role"
               name="role"
+              defaultValue={user.role}
               className="border p-2 rounded-md"
-              required
-            >
+              required>
               <option value="siswa">Siswa</option>
               <option value="petugas">Petugas</option>
             </select>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Masukkan password"
-              required
-            />
-          </div>
-
+       
           <div className="grid gap-2">
             <Label htmlFor="image">Avatar</Label>
             <Input
@@ -97,7 +84,7 @@ export function DialogAddUser() {
             />
           </div>
 
-
+          
           {preview && (
             <img
               alt="Preview"
@@ -111,7 +98,7 @@ export function DialogAddUser() {
               <Button variant="outline">Cancel</Button>
             </DialogClose>
             <DialogClose asChild>
-              <Button type="submit">Add User</Button>
+              <Button type="submit">Save Changes</Button>
             </DialogClose>
           </DialogFooter>
         </form>

@@ -22,11 +22,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import { confirmReturn, fetchBorrows } from "@/lib/action";
+import { Book, Clock, CheckCircle, AlertTriangle } from "lucide-react";
+import { confirmReturn, fetchBorrowsAdmin } from "@/lib/action";
+import { fetchAdminStats } from "@/lib/fetchDashboard";
 
 export default async function BorrowingsPage() {
-  const borrows = await fetchBorrows();
+  const { rows, totalBorrows } = await fetchBorrowsAdmin();
+  const result = await fetchAdminStats();
 
   return (
     <SidebarProvider>
@@ -41,6 +43,7 @@ export default async function BorrowingsPage() {
             />
             <Breadcrumb>
               <BreadcrumbList>
+              <BreadcrumbItem>Admin</BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
                   <BreadcrumbPage>Borrowings</BreadcrumbPage>
@@ -50,12 +53,59 @@ export default async function BorrowingsPage() {
           </div>
         </header>
 
-        <div className="flex flex-col items-center justify-center gap-4 p-4">
-          <h1>
-            Total Peminjaman <strong>{borrows.length}</strong>
-          </h1>
+        <div className="flex flex-col bg-primary2 gap-4 p-5 h-full">
+          <section className="grid grid-cols-4 gap-4 w-full">
+            <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
+              <Book
+                size={50}
+                className="p-2 bg-blue-100 rounded-md text-blue-500"
+              />
+              <div>
+                <div className="text-sm text-slate-400">Total Peminjaman</div>
+                <div className="text-2xl font-semibold mt-2">
+                  {totalBorrows}
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
+              <Clock
+                size={50}
+                className="p-2 bg-amber-100  rounded-md text-amber-500"
+              />
+              <div>
+                <div className="text-sm text-slate-400">Sedang Dipinjam</div>
+                <div className="text-2xl font-semibold mt-2">
+                  {result.total_ongoing}
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
+              <CheckCircle
+                size={50}
+                className="p-2 bg-green-100 rounded-md text-green-500"
+              />
+              <div>
+                <div className="text-sm text-slate-400">Dikembalikan</div>
+                <div className="text-2xl font-semibold mt-2">
+                  {result.total_returned}
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
+              <AlertTriangle
+                size={50}
+                className="p-2 bg-red-100 rounded-md text-red-500"
+              />
+              <div>
+                <div className="text-sm text-slate-400">Terlambat</div>
+                <div className="text-2xl font-semibold mt-2 text-rose-600">
+                  {result.total_late}
+                </div>
+              </div>
+            </div>
+          </section>
 
-          <div className="p-5 shadow-2xl rounded-xl w-full">
+          <div className="p-5 shadow-2xl rounded-xl w-full bg-white">
             <Table>
               <TableCaption>
                 List peminjaman user di <strong>Perpus.</strong>
@@ -75,7 +125,7 @@ export default async function BorrowingsPage() {
               </TableHeader>
 
               <TableBody>
-                {borrows.map((item) => (
+                {rows.map((item) => (
                   <TableRow key={item.borrow_id}>
                     <TableCell className="text-center align-middle">
                       {item.borrow_id}
@@ -120,7 +170,7 @@ export default async function BorrowingsPage() {
                       {item.status}
                     </TableCell>
 
-                    <TableCell>
+                    <TableCell className="flex justify-center ">
                       <form action={confirmReturn}>
                         <input
                           type="hidden"

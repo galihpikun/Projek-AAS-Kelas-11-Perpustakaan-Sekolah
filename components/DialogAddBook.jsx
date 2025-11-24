@@ -22,7 +22,7 @@ export function DialogAddBook() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add A Book</Button>
+        <Button variant="outline" className='bg-secondary2 text-white hover:bg-accent2 hover:text-white'>Add A Book</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">

@@ -10,9 +10,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fetchBorrows, requestReturn } from "@/lib/action";
+import { fetchUserStats } from "@/lib/fetchDashboard";
 
 export default async function history() {
-  const borrows = await fetchBorrows();
+  const { rows, totalBorrows } = await fetchBorrows();
+  const result = await fetchUserStats();
+
   return (
     <div className="flex flex-col items-center">
       <Navbar></Navbar>
@@ -34,7 +37,7 @@ export default async function history() {
             />
             <div>
               <div className="text-sm text-slate-400">Total Peminjaman</div>
-              <div className="text-2xl font-semibold mt-2">10</div>
+              <div className="text-2xl font-semibold mt-2">{totalBorrows}</div>
             </div>
           </div>
           <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -44,7 +47,7 @@ export default async function history() {
             />
             <div>
               <div className="text-sm text-slate-400">Sedang Dipinjam</div>
-              <div className="text-2xl font-semibold mt-2">20</div>
+              <div className="text-2xl font-semibold mt-2">{result.total_ongoing}</div>
             </div>
           </div>
           <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -54,7 +57,7 @@ export default async function history() {
             />
             <div>
               <div className="text-sm text-slate-400">Dikembalikan</div>
-              <div className="text-2xl font-semibold mt-2">12</div>
+              <div className="text-2xl font-semibold mt-2">{result.total_returned}</div>
             </div>
           </div>
           <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -65,7 +68,7 @@ export default async function history() {
             <div>
               <div className="text-sm text-slate-400">Terlambat</div>
               <div className="text-2xl font-semibold mt-2 text-rose-600">
-                10
+                {result.total_late}
               </div>
             </div>
           </div>
@@ -76,7 +79,7 @@ export default async function history() {
             />
             <div>
               <div className="text-sm text-slate-400">Total Denda</div>
-              <div className="text-2xl font-semibold mt-2">Rp 200.000</div>
+              <div className="text-2xl font-semibold mt-2">Rp {result.total_fines}</div>
             </div>
           </div>
         </section>
@@ -84,21 +87,21 @@ export default async function history() {
         <section>
           <div className="flex gap-3 items-center mb-4">
             <button className="px-4 py-2 rounded-md bg-white text-slate-600 shadow hover:bg-slate-100">
-              Semua (10)
+              Semua ({totalBorrows})
             </button>
             <button className="px-4 py-2 rounded-md bg-white text-slate-600 shadow hover:bg-slate-100">
-              Dipinjam (10)
+              Dipinjam ({result.total_ongoing})
             </button>
             <button className="px-4 py-2 rounded-md bg-white text-slate-600 shadow hover:bg-slate-100">
-              Dikembalikan (10)
+              Dikembalikan ({result.total_returned})
             </button>
             <button className="px-4 py-2 rounded-md bg-white text-slate-600 shadow hover:bg-slate-100">
-              Terlambat (10)
+              Terlambat ({result.total_late})
             </button>
           </div>
 
           <div className="gap-5 flex flex-col">
-            {borrows.map((item) => (
+            {rows.map((item) => (
               <div key={item.borrow_id}>
                 <div className="w-full h-50 shadow rounded-xl overflow-hidden flex justify-between items-center">
                   <div className="flex gap-5 items-center">

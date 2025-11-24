@@ -1,6 +1,6 @@
 import Navbar from "@/components/NavBar";
 import Link from "next/link";
-import { fetchBooks } from "@/lib/action";
+import { fetchBooks, fetchBorrows } from "@/lib/action";
 import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
@@ -10,7 +10,8 @@ export default async function HomeSiswaPage() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   console.log(user);
-  const { books } = await fetchBooks();
+  const { books, totalBooks } = await fetchBooks();
+  const {totalBorrows} = await fetchBorrows();
 
   return (
     <div className="flex flex-col gap-20 scroll-smooth items-center">
@@ -36,7 +37,7 @@ export default async function HomeSiswaPage() {
               <div className="text-sm text-slate-400">
                 Buku Yang Sedang Dipinjam
               </div>
-              <div className="text-2xl font-semibold mt-2">10</div>
+              <div className="text-2xl font-semibold mt-2">{totalBorrows}</div>
             </div>
           </div>
           <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -48,7 +49,7 @@ export default async function HomeSiswaPage() {
               <div className="text-sm text-slate-400">
                 Total Buku di Perpustakaan
               </div>
-              <div className="text-2xl font-semibold mt-2">10</div>
+              <div className="text-2xl font-semibold mt-2">{totalBooks}</div>
             </div>
           </div>
           <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
