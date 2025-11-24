@@ -27,6 +27,7 @@ import { deleteData } from "@/lib/action";
 import { DialogEditBook } from "@/components/DialogEditBook";
 import { Library,CheckCircle, Clock } from "lucide-react";
 import { fetchBooksCount } from "@/lib/fetchDashboard";
+import AlertDeleteBook from "@/components/AlertDeleteBook";
 
 export default async function users() {
   const { books, totalBooks } = await fetchBooks();
@@ -154,13 +155,7 @@ export default async function users() {
 
                     <TableCell className="text-center align-middle">
                       <div className="flex justify-center gap-4">
-                        <form action={deleteData}>
-                          <input type="hidden" value={book.id_buku} name="id" />
-                          <button className="bg-red-500 text-white px-2 py-2 rounded-md">
-                            Hapus
-                          </button>
-                        </form>
-
+                        <AlertDeleteBook book={book}></AlertDeleteBook>
                         <DialogEditBook book={book} />
                       </div>
                     </TableCell>

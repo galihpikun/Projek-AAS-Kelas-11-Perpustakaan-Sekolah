@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "@/components/ui/sidebar";
+import LogOutButton from "./Logout";
 
 import {
   LayoutDashboard,
@@ -11,7 +12,7 @@ import {
   Users,
   ClipboardCheck,
   UserCircle,
-  LogOut,
+
 } from "lucide-react";
 
 import {
@@ -77,18 +78,11 @@ export function AppSidebar(props) {
 
       
       <SidebarFooter>
-        <div className="flex items-center gap-3 p-3 rounded-md hover:bg-muted cursor-pointer">
-          <UserCircle className="w-6 h-6" />
-          {state !== "collapsed" && <span className="truncate">Admin</span>}
-        </div>
 
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <button className="flex items-center gap-2 w-full text-red-500">
-                <LogOut className="w-4 h-4" />
-                {state !== "collapsed" && "Logout"}
-              </button>
+              <LogOutButton />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

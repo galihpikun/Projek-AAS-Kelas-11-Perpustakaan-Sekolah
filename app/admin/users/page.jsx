@@ -26,6 +26,7 @@ import { DialogAddUser } from "@/components/DialogAddUser";
 import { DialogEditUser } from "@/components/DialogEditUser";
 import { User, UserStar, Users } from "lucide-react";
 import { fetchUsersCount } from "@/lib/fetchDashboard";
+import AlertDeleteUser from "@/components/AlertDeleteUser";
 
 
 export default async function users() {
@@ -140,12 +141,7 @@ export default async function users() {
                     </TableCell>
                     <TableCell className="text-center align-middle">
                       <div className="flex justify-center gap-4">
-                        <form action={deleteUser}>
-                          <input type="hidden" value={user.user_id} name="id" />
-                          <button className="bg-red-500 text-white px-2 py-2 rounded-md">
-                            Hapus
-                          </button>
-                        </form>
+                        <AlertDeleteUser user={user}></AlertDeleteUser>
 
                         <DialogEditUser user={user} />
                       </div>

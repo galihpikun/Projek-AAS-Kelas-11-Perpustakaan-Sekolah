@@ -10,7 +10,7 @@ import { Search } from "lucide-react";
             <a href="/siswa/home" className=" hover:font-medium ">Home</a>
           </li>
           <li>
-            <a href="/siswa/genre" className=" hover:font-medium ">Genres</a>
+            <a href="/siswa/genre" className=" hover:font-medium ">Saved</a>
           </li>
           <li>
             <a href="/siswa/history" className=" hover:font-medium ">History</a>
