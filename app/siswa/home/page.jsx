@@ -18,7 +18,7 @@ export default async function HomeSiswaPage() {
       <Navbar></Navbar>
 
       <section className="flex flex-col gap-8 w-full justify-center items-center mt-10">
-        <div className="w-10/12 rounded-2xl h-[200px] bg-gradient-to-r from-orange-300 to-orange-400 mt-20 text-white flex flex-col justify-center items-center gap-4 shadow-lg shadow-orange-300/50">
+        <div className="w-10/12 rounded-2xl h-[200px] bg-linear-65 from-[#C89F68] to-[#A57744] mt-20 text-white flex flex-col justify-center items-center gap-4 shadow-lg shadow-orange-300/50">
           <h1 className="text-4xl font-semibold">
             Welcome Back {user.name} 👋
           </h1>

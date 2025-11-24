@@ -28,10 +28,9 @@ import { User, UserStar, Users } from "lucide-react";
 import { fetchUsersCount } from "@/lib/fetchDashboard";
 import AlertDeleteUser from "@/components/AlertDeleteUser";
 
-
 export default async function users() {
   const { users, totalUsers } = await getAllUsers();
-  const {userAdmin, userSiswa} = await fetchUsersCount();
+  const { userAdmin, userSiswa } = await fetchUsersCount();
 
   return (
     <SidebarProvider>
@@ -46,7 +45,7 @@ export default async function users() {
             />
             <Breadcrumb>
               <BreadcrumbList>
-              <BreadcrumbItem>Admin</BreadcrumbItem>
+                <BreadcrumbItem>Admin</BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
                   <BreadcrumbPage>Users</BreadcrumbPage>
@@ -65,9 +64,7 @@ export default async function users() {
               />
               <div>
                 <div className="text-sm text-slate-400">Total Users</div>
-                <div className="text-2xl font-semibold mt-2">
-                  {totalUsers}
-                </div>
+                <div className="text-2xl font-semibold mt-2">{totalUsers}</div>
               </div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -77,9 +74,7 @@ export default async function users() {
               />
               <div>
                 <div className="text-sm text-slate-400">Users Petugas</div>
-                <div className="text-2xl font-semibold mt-2">
-                  {userAdmin}
-                </div>
+                <div className="text-2xl font-semibold mt-2">{userAdmin}</div>
               </div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -89,12 +84,9 @@ export default async function users() {
               />
               <div>
                 <div className="text-sm text-slate-400">Users Siswa</div>
-                <div className="text-2xl font-semibold mt-2">
-                  {userSiswa}
-                </div>
+                <div className="text-2xl font-semibold mt-2">{userSiswa}</div>
               </div>
             </div>
-            
           </section>
 
           <div className="p-5 shadow-2xl rounded-xl w-full bg-white">
@@ -131,13 +123,15 @@ export default async function users() {
                       {user.username}
                     </TableCell>
                     <TableCell className="text-center">{user.email}</TableCell>
-                    <TableCell
-                      className={`text-center w-fit h-fit font-bold ${
-                        user.role === "petugas"
-                          ? "text-red-700"
-                          : "text-blue-700"
-                      }`}>
-                      {user.role}
+                    <TableCell className='flex justify-center'>
+                      <div
+                        className={`text-center w-fit h-fit p-1 px-2 text-md rounded-full border-2 font-semibold ${
+                          user.role === "petugas"
+                            ? "text-red-700 bg-red-200 border-red-700"
+                            : "text-blue-700 bg-blue-200 border-blue-700"
+                        }`}>
+                        {user.role}
+                      </div>
                     </TableCell>
                     <TableCell className="text-center align-middle">
                       <div className="flex justify-center gap-4">

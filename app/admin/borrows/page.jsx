@@ -117,6 +117,7 @@ export default async function BorrowingsPage() {
                   <TableHead className="text-center">Gambar</TableHead>
                   <TableHead className="text-center">Judul Buku</TableHead>
                   <TableHead className="text-center">Author</TableHead>
+                  <TableHead className="text-center">Peminjam</TableHead>
                   <TableHead className="text-center">Tanggal Pinjam</TableHead>
                   <TableHead className="text-center">Tenggat Waktu</TableHead>
                   <TableHead className="text-center">Status</TableHead>
@@ -149,6 +150,16 @@ export default async function BorrowingsPage() {
                       {item.author}
                     </TableCell>
 
+                    <TableCell className="">
+                     <div className="flex gap-1 items-center justify-center h-full w-full">
+                       <img src={item.avatar || '/images/profile.png'} alt="Profile" className="w-10 h-10 object-cover" />
+                      <div>
+                        <h1 className="font-medium">{item.user_name}</h1>
+                        <h1 className="text-slate-700 text-sm">{item.user_email}</h1>
+                      </div>
+                     </div>
+                    </TableCell>
+
                     <TableCell className="text-center align-middle">
                       {new Date(item.borrow_date).toLocaleDateString("id-ID")}
                     </TableCell>
@@ -158,20 +169,21 @@ export default async function BorrowingsPage() {
                     </TableCell>
 
                     <TableCell
-                      className={`text-center align-middle font-bold ${
+                      >
+                      <div className={`text-center text-md align-middle font-bold rounded-full p-1 border-2 ${
                         item.status === "ongoing"
-                          ? "text-blue-700"
+                          ? "text-blue-600 bg-blue-200 border-blue-600 "
                           : item.status === "requested_return"
-                          ? "text-yellow-600"
+                          ? "text-yellow-600 bg-yellow-200 border-yellow-600"
                           : item.status === "returned"
-                          ? "text-green-700"
-                          : "text-red-700"
-                      }`}>
-                      {item.status}
+                          ? "text-green-700 bg-green-200 border-green-600"
+                          : "text-red-700 bg-red-200 border-red-600"
+                      }`}>{item.status}</div>
+                      
                     </TableCell>
 
-                    <TableCell className="flex justify-center ">
-                      <form action={confirmReturn}>
+                    <TableCell className=" ">
+                      <form action={confirmReturn} className="flex justify-center items-center">
                         <input
                           type="hidden"
                           value={item.borrow_id}
@@ -184,11 +196,17 @@ export default async function BorrowingsPage() {
                         />
                         {item.status === "requested_return" ? (
                           <Button>Konfirmasi</Button>
+                        ) : item.status === "returned" ? (
+                          <Button
+                            disabled
+                            className="bg-green-600 cursor-not-allowed">
+                            Sudah Dikembalikan
+                          </Button>
                         ) : (
                           <Button
                             disabled
-                            className="bg-gray-400 cursor-not-allowed">
-                            No Interaction
+                            className="bg-slate-300 cursor-not-allowed">
+                            Dalam Peminjaman
                           </Button>
                         )}
                       </form>

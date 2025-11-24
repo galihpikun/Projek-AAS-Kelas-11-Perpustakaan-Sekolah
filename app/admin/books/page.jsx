@@ -25,13 +25,13 @@ import { fetchBooks } from "@/lib/action";
 import { DialogAddBook } from "@/components/DialogAddBook";
 import { deleteData } from "@/lib/action";
 import { DialogEditBook } from "@/components/DialogEditBook";
-import { Library,CheckCircle, Clock } from "lucide-react";
+import { Library, CheckCircle, Clock } from "lucide-react";
 import { fetchBooksCount } from "@/lib/fetchDashboard";
 import AlertDeleteBook from "@/components/AlertDeleteBook";
 
 export default async function users() {
   const { books, totalBooks } = await fetchBooks();
-  const {Available, Unavailable} = await fetchBooksCount();
+  const { Available, Unavailable } = await fetchBooksCount();
 
   return (
     <SidebarProvider>
@@ -46,7 +46,7 @@ export default async function users() {
             />
             <Breadcrumb>
               <BreadcrumbList>
-              <BreadcrumbItem>Admin</BreadcrumbItem>
+                <BreadcrumbItem>Admin</BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
                   <BreadcrumbPage>Books</BreadcrumbPage>
@@ -65,9 +65,7 @@ export default async function users() {
               />
               <div>
                 <div className="text-sm text-slate-400">Total Buku</div>
-                <div className="text-2xl font-semibold mt-2">
-                  {totalBooks}
-                </div>
+                <div className="text-2xl font-semibold mt-2">{totalBooks}</div>
               </div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -77,9 +75,7 @@ export default async function users() {
               />
               <div>
                 <div className="text-sm text-slate-400">Buku Yang Tersedia</div>
-                <div className="text-2xl font-semibold mt-2">
-                  {Available}
-                </div>
+                <div className="text-2xl font-semibold mt-2">{Available}</div>
               </div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -89,12 +85,9 @@ export default async function users() {
               />
               <div>
                 <div className="text-sm text-slate-400">Buku Yang Dipinjam</div>
-                <div className="text-2xl font-semibold mt-2">
-                  {Unavailable}
-                </div>
+                <div className="text-2xl font-semibold mt-2">{Unavailable}</div>
               </div>
             </div>
-            
           </section>
 
           <div className="p-5 shadow-2xl rounded-xl w-full bg-white">
@@ -145,12 +138,15 @@ export default async function users() {
                       {book.author}
                     </TableCell>
 
-                    <TableCell className={`text-center align-middle font-bold ${
-                        book.status === "tersedia"
-                          ? "text-green-700"
-                          : "text-red-700"
-                      }`}>
-                      {book.status}
+                    <TableCell>
+                      <div
+                        className={`text-center text-md p-1 rounded-full border-2 align-middle font-bold ${
+                          book.status === "tersedia"
+                            ? "text-green-700 bg-green-200 border-green-700"
+                            : "text-red-700 bg-red-200 border-red-700"
+                        }`}>
+                        {book.status}
+                      </div>
                     </TableCell>
 
                     <TableCell className="text-center align-middle">

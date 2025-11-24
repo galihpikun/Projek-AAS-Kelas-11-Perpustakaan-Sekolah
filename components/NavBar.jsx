@@ -25,7 +25,7 @@ import { Search } from "lucide-react";
       />
     </div>
         <div className="flex gap-5">
-          <Link href='/profile' className="hover:shadow-2xl hover:scale-105 transition-transform"><img src="/images/profile.png" className="w-10 h-10" alt="" /></Link>
+          <Link href='/siswa/profile' className="hover:shadow-2xl hover:scale-105 transition-transform"><img src="/images/profile.png" className="w-10 h-10" alt="" /></Link>
         </div>
       </nav>
 
