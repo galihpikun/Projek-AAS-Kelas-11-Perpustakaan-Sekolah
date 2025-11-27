@@ -11,7 +11,7 @@ export default function LogOutButton () {
 
     function keluar () {
         signOut({
-            callbackUrl: '/'   // setelah logout berpindah ke landing page
+            callbackUrl: '/'
         });
         alert('Anda berhasil keluar.')
     }
