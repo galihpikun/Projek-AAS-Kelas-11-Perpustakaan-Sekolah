@@ -179,7 +179,7 @@ export default async function BorrowingsPage() {
                         className={`text-center text-md align-middle font-bold rounded-full p-1 border-2 ${
                           item.status === "ongoing"
                             ? "text-blue-600 bg-blue-200 border-blue-600 "
-                            : item.status === "requested_return" || "pending"
+                            : item.status === "requested_return" || item.status === "pending"
                             ? "text-yellow-600 bg-yellow-200 border-yellow-600"
                             : item.status === "returned"
                             ? "text-green-700 bg-green-200 border-green-600"
