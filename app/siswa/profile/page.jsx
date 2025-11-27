@@ -3,18 +3,29 @@ import { Calendar, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import AlertDeleteUserProfile from "@/components/AlertDeleteProfile";
+import { DialogUpdateAvatar } from "@/components/EditProfile";
+import { fetchUserProfile } from "@/lib/fetchDashboard";
+import { DialogEditUsername } from "@/components/DialogEditUsername";
+import { DialogEditEmail } from "@/components/DialogEditEmail";
+import { DialogEditPassword } from "@/components/DialogEditPassword";
+import LogOutButton2 from "@/components/LogOut2";
 
 
 export default async function Profile() {
+  const userData = await fetchUserProfile();
+  
+
   return (
+    
     <div className="flex flex-col w-full h-full items-center px-30">
       <Navbar></Navbar>
       <section className="w-full rounded-2xl h-[200px] bg-linear-65 from-[#C89F68] to-[#A57744] mt-30 text-white flex justify-between px-5 items-center gap-4 shadow-lg shadow-orange-300/50">
         <div className="flex gap-5 items-center">
           <img
-            src="/images/profile.png"
+            src={userData.avatar || "/images/profile.png"}
             alt="Avatar Profile"
-            className="w-35 h-35"
+            className="w-35 h-35 border-4 border-white rounded-full"
           />
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-semibold">Username</h1>
@@ -36,39 +47,44 @@ export default async function Profile() {
         <div className="flex justify-between items-center">
           <div className="flex gap-5 items-center">
             <img
-              src="/images/profile.png"
+              src={userData.avatar || "/images/profile.png"}
               alt="Avatar Profile"
-              className="w-35 h-35"
+              className="w-35 h-35 border-4 border-primary2 rounded-full"
             />
-            <Button>Ubah Profil</Button>
+            < DialogUpdateAvatar></ DialogUpdateAvatar>
           </div>
           <div className="flex flex-col gap-5 w-1/3">
             <div className="gap-1 flex flex-col">
               <Label>Username</Label>
               <div className="flex gap-5">
-                <Input></Input>
-                <Button>Edit</Button>
+                <Input readOnly value={userData.username}></Input>
+                <DialogEditUsername></DialogEditUsername>
               </div>
             </div>
             <div className="gap-1 flex flex-col">
               <Label>Email</Label>
 
               <div className="flex gap-5">
-                <Input></Input>
-                <Button>Edit</Button>
+                <Input readOnly value={userData.email}></Input>
+                <DialogEditEmail></DialogEditEmail>
               </div>
             </div>
           </div>
         </div>
         <h1 className="font-medium text-lg">Password</h1>
-        <Button className='w-fit px-5'>Ganti Password</Button>
+        <DialogEditPassword></DialogEditPassword>
+        <h1>Keluar dari akun</h1>
+        <LogOutButton2></LogOutButton2>
       </section>
 
-      <section className="bg-red-200 border-dashed text-red-600 border-2 gap-2 flex flex-col border-red-600 w-full mt-20 p-5 rounded-2xl">
+      <section className="bg-red-200 border-dashed text-red-600 border-2 gap-2 flex flex-col border-red-600 w-full mt-20 p-5 rounded-2xl mb-10">
         <h1 className="text-xl font-semibold">Zona Berbahaya</h1>
         <h1>Tindakan ini tidak dapat diundurkan, Berhati hati</h1>
-        <Button variant='destructive' className='w-fit px-5'><Trash></Trash> Hapus Akun</Button>
+        <AlertDeleteUserProfile></AlertDeleteUserProfile>
       </section>
+
+      
+
     </div>
   );
 }

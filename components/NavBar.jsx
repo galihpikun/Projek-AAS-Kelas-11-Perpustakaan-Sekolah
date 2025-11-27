@@ -1,7 +1,10 @@
 import Link from "next/link"; 
 import { Search } from "lucide-react";
+import { fetchUserProfile } from "@/lib/fetchDashboard";
  
- export default function Navbar() {
+ export default async function Navbar() {
+  const userData = await fetchUserProfile();
+
     return (
         <nav className="flex justify-around items-center h-18 bg-[#C89F68] text-white w-full fixed z-10 shadow-2xl">
         <h1 className="text-xl font-semibold">📚 Perpus.</h1>
@@ -25,7 +28,7 @@ import { Search } from "lucide-react";
       />
     </div>
         <div className="flex gap-5">
-          <Link href='/siswa/profile' className="hover:shadow-2xl hover:scale-105 transition-transform"><img src="/images/profile.png" className="w-10 h-10" alt="" /></Link>
+          <Link href='/siswa/profile' className="hover:shadow-2xl hover:scale-105 transition-transform"><img src={userData.avatar ||"/images/profile.png"} className="w-10 h-10 rounded-full" alt="" /></Link>
         </div>
       </nav>
 
