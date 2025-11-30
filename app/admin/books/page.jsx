@@ -71,7 +71,7 @@ export default async function users() {
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
               <CheckCircle
                 size={50}
-                className="p-2 bg-amber-100  rounded-md text-amber-500"
+                className="p-2 bg-green-100 rounded-md text-green-500"
               />
               <div>
                 <div className="text-sm text-slate-400">Buku Yang Tersedia</div>
@@ -81,7 +81,7 @@ export default async function users() {
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
               <Clock
                 size={50}
-                className="p-2 bg-green-100 rounded-md text-green-500"
+                className="p-2  bg-red-100  rounded-md text-red-500"
               />
               <div>
                 <div className="text-sm text-slate-400">Buku Yang Dipinjam</div>

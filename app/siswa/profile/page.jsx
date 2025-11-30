@@ -28,8 +28,8 @@ export default async function Profile() {
             className="w-35 h-35 border-4 border-white rounded-full"
           />
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-semibold">Username</h1>
-            <h1 className="text-lg">Email@gmail.com</h1>
+            <h1 className="text-3xl font-semibold">{userData.username}</h1>
+            <h1 className="text-lg">{userData.email}</h1>
             <h1 className="flex gap-2 items-center">
               <Calendar size={25}></Calendar> Bergabung Sejak{" "}
               <strong>2025-03-08</strong>
@@ -38,7 +38,7 @@ export default async function Profile() {
         </div>
         <div className="flex flex-col gap-2 justify-center text-center">
           <h1>Id Member :</h1>
-          <h1 className="font-semibold text-lg">12</h1>
+          <h1 className="font-semibold text-lg">{userData.user_id}</h1>
         </div>
       </section>
 

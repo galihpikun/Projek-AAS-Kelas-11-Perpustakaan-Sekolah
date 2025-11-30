@@ -56,20 +56,33 @@ export default function HistoryClient({ rows, result, totalBorrows }) {
                 src={item.gambar || "/images/template-thumbnail.png"}
                 className="w-40 h-full object-cover"
               />
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-3">
+                <p className="text-sm italic bg-primary2 rounded-full px-2 py-1 w-fit text-white">
+                    {item.genre_buku}
+                  </p>
                 <h1 className="text-xl font-semibold">{item.nama_buku}</h1>
                 <p className="text-sm text-gray-600">{item.author}</p>
                 <p className="text-sm">
-                  Pinjam:{" "}
+                  Tanggal Pinjam:{" "}
                   <b>
                     {new Date(item.borrow_date).toLocaleDateString("id-ID")}
                   </b>
                 </p>
+                <p className="text-sm">
+                  ID Buku : {item.id_buku}
+                </p>
               </div>
             </div>
 
-            <form action={requestReturn} className="pr-5">
+            <form action={requestReturn} className="pr-5 flex flex-col items-center gap-5">
               <input type="hidden" name="id" value={item.borrow_id} />
+
+               <p className="text-sm">
+                  Deadline Pengembalian:{" "}
+                  <b>
+                    {new Date(item.due_date).toLocaleDateString("id-ID")}
+                  </b>
+                </p>
 
               {item.status === "requested_return" || item.status === "pending" ? (
                 <Button disabled className="bg-gray-400">
