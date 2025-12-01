@@ -21,6 +21,7 @@ import { fetchBorrowsAdmin } from "@/lib/action"
 import { ChartAreaDefault } from "@/components/ChartWeek"
 import { fetchBorrowsGenre, fetchBorrowsWeek } from "@/lib/fetchDashboard"
 import { ChartPieSimple } from "@/components/PieGenre"
+import { TableUsers } from "@/components/DashUsers"
 
 export default async function dashboard() {
   const { totalUsers } = await getAllUsers();
@@ -58,7 +59,7 @@ export default async function dashboard() {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 bg-primary2">
+        <div className="flex flex-1 flex-col gap-5 p-4 bg-primary2 w-full">
           <h1>Welcome back! user ke {user.id} bernama {user.name} dengan email {user.email} (role: {user.role})</h1>
           <section className="grid grid-cols-3 gap-4 w-full">
             <div className="bg-white p-4 rounded-lg shadow flex gap-5 items-center">
@@ -95,8 +96,9 @@ export default async function dashboard() {
           <section className="flex gap-5 items-center w-full">
             <ChartAreaDefault data={formatted}></ChartAreaDefault>
           </section>
-          <section className="grid grid-cols-2">
+          <section className="grid grid-cols-2 gap-5">
             <ChartPieSimple genre={genre}></ChartPieSimple>
+            <TableUsers></TableUsers>
           </section>
         </div>
       </SidebarInset>

@@ -25,6 +25,7 @@ import {
 import { Book, Clock, CheckCircle, AlertTriangle } from "lucide-react";
 import { confirmReturn, fetchBorrowsAdmin, approveBorrow } from "@/lib/action";
 import { fetchAdminStats } from "@/lib/fetchDashboard";
+import ExportButtons from "@/components/ExportExcel";
 
 export default async function BorrowingsPage() {
   const { rows, totalBorrows } = await fetchBorrowsAdmin();
@@ -51,6 +52,7 @@ export default async function BorrowingsPage() {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+          <ExportButtons rows={rows}></ExportButtons>
         </header>
 
         <div className="flex flex-col bg-primary2 gap-4 p-5 h-full">
@@ -179,7 +181,8 @@ export default async function BorrowingsPage() {
                         className={`text-center text-md align-middle font-bold rounded-full p-1 border-2 ${
                           item.status === "ongoing"
                             ? "text-blue-600 bg-blue-200 border-blue-600 "
-                            : item.status === "requested_return" || item.status === "pending"
+                            : item.status === "requested_return" ||
+                              item.status === "pending"
                             ? "text-yellow-600 bg-yellow-200 border-yellow-600"
                             : item.status === "returned"
                             ? "text-green-700 bg-green-200 border-green-600"
@@ -190,7 +193,6 @@ export default async function BorrowingsPage() {
                     </TableCell>
 
                     <TableCell className="text-center">
-                      
                       {item.status === "pending" && (
                         <form action={approveBorrow}>
                           <input

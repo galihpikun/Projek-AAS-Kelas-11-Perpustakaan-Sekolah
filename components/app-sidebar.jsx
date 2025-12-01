@@ -67,7 +67,7 @@ export function AppSidebar(props) {
                       isActive={isActive}
                       className={
                         isActive
-                          ? "bg-orange-300  text-white hover:bg-primary2/90 data-[active=true]:bg-orange-200 rounded-lg py-5"
+                          ? "bg-orange-300  text-white hover:bg-primary2/90 data-[active=true]:bg-primary2 data-[active=true]:text-white rounded-lg py-5"
                           : "hover:bg-gray-100 dark:hover:bg-gray-800 py-5"
                       }>
                       <Link href={item.url} className="flex items-center gap-2">
