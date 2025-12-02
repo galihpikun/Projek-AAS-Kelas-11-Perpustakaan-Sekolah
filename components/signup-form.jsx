@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,11 +16,25 @@ import { register } from "@/lib/action"
 
 
 export function SignupForm({ className, ...props }) {
-  return (
+  
+  async function handleAction(formData) {
+    const result = await register(formData);
+
+    if (result?.errors) {
+      
+      let semuaError = Object.values(result.errors)
+        .flat()
+        .join("\n");
+
+      alert(semuaError); 
+    }
+  }
+    
+    return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8" action={register}>
+          <form className="p-6 md:p-8" action={handleAction}>
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
                 <h1 className="text-2xl font-bold">Create your account</h1>
